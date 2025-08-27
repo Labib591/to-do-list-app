@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import ShowTodo from "./ShowTodo";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function TodoForm() {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,9 +26,8 @@ export default function TodoForm() {
         console.log(res);
         throw new Error("Failed to save todo");
       }
-
-      window.refresh();
       e.target.reset(); // clear input
+      router.push("/");
     } catch (error) {
       console.error(error);
       alert("Something went wrong!");
@@ -38,7 +38,7 @@ export default function TodoForm() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex">
         <input type="text" placeholder="add todo" name="todo" />
         <Button type="submit" disabled={loading}>
           {loading ? "Adding..." : "Add"}

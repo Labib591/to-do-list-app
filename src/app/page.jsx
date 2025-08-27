@@ -1,3 +1,4 @@
+import Navbar from "./Components/Navbar";
 import ShowTodo from "./Components/ShowTodo";
 import TodoForm from "./Components/todoForm";
 
@@ -5,10 +6,9 @@ import TodoForm from "./Components/todoForm";
 export default function Home() {
   return (
     <main>
+      <Navbar></Navbar>
       <div>
-      <h1>Home</h1>
       <div>
-        <TodoForm></TodoForm>
         <ShowTodo></ShowTodo>
       </div>
     </div>

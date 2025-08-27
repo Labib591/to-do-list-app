@@ -16,6 +16,7 @@ export async function POST(req) {
     await dbConnect();
     const body = await req.json();
     const newTodo = await Todo.create(body);
+
     return Response.json(newTodo, { status: 201 });
   } catch (error) {
     console.log(error);

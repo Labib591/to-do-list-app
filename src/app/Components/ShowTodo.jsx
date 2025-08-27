@@ -7,16 +7,17 @@ export default async function ShowTodo() {
 
   const todos =await data.json();
 
-
-    console.log(todos);
   return (
     <div>
-        {todos.map((todo)=>
+      <h1  className='text-center text-2xl font-bold'>Todos</h1>
+        <div className='grid grid-cols-3 gap-4 mx-auto px-4'>
+          {todos.map((todo)=>
         <Card key={todo._id}>
           <CardHeader>
             <CardTitle>{todo.todo}</CardTitle>
           </CardHeader>
         </Card>)}
+        </div>
     </div>
   )
 }
