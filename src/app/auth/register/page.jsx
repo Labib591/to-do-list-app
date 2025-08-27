@@ -1,14 +1,11 @@
-"use client"
+import Register from "@/app/Components/Register";
 
-const Register = () => {
+const RegisterPage = () => {
+  return (
+    <div className="w-1/2 mx-auto mt-20">
+      <Register></Register>
+    </div>
+  );
+};
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
-
-    return (
-        <div>Register</div>
-    )
-}
-
-export default Register
+export default RegisterPage;

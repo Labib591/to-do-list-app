@@ -2,12 +2,18 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function TodoForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const {data: session} = useSession();
 
   const handleSubmit = async (e) => {
+
+    console.log(session);
+
+
     e.preventDefault();
     const task = e.target.todo.value;
 
@@ -19,7 +25,9 @@ export default function TodoForm() {
       const res = await fetch("/api/todo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ todo: task }),
+        body: JSON.stringify({ todo: task,
+          userEmail: session.user.email
+         }),
       });
 
       if (!res.ok) {
@@ -44,6 +52,7 @@ export default function TodoForm() {
           {loading ? "Adding..." : "Add"}
         </Button>
       </form>
+
     </div>
   );
 }
